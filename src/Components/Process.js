@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Process() {
+function Process({ process }) {
   return (
     <div>
-     <h1>Process</h1> 
+      {process.name} size-{ process.size}
     </div>
   );
 };
