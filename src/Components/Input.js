@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {PlusIcon} from "@heroicons/react/outline"
 
 function Input() {
 
@@ -9,7 +10,7 @@ function Input() {
     <div>
        <input type='text' value={process} onChange={(event)=>{setProcess(event.target.value)}} placeholder='Process description'/>
        <input type='text' value={size} onChange={(event)=>{setSize(event.target.value)}} placeholder='Process size'/>
-       <button>+</button>
+       <button><PlusIcon/></button>
     </div>
   );
 };
