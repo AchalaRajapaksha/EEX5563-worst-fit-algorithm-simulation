@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import {PlusIcon} from "@heroicons/react/outline"
+import { PlusIcon } from "@heroicons/react/outline"
+import { v4 } from "uuid";
 
-function Input({ processes, setProcesses, sizes, setSizes }) {
+function Input({ processes, setProcesses, }) {
 
   const [process, setProcess] = useState("");
   const [size, setSize] = useState("");
@@ -18,7 +19,7 @@ function Input({ processes, setProcesses, sizes, setSizes }) {
     }
 
       const newProcess = {
-        id: 1,
+        id: `process_${v4()}`,
         name: process,
         size: parseInt(size, 10),
       };
@@ -29,13 +30,32 @@ function Input({ processes, setProcesses, sizes, setSizes }) {
       setSize("");
    
   };
+
+  
     return (
-    <div>
-       <input type='text' value={process} onChange={(event)=>{setProcess(event.target.value)}} placeholder='Process description'/>
-       <input type='text' value={size} onChange={(event)=>{setSize(event.target.value)}} placeholder='Process size'/>
-       <button onClick={handleClick}><PlusIcon/></button>
-    </div>
-  );
+      <div>
+        <input
+          type="text"
+          value={process}
+          onChange={(event) => {
+            setProcess(event.target.value);
+          }}
+          placeholder="Process description"
+        />
+        <input
+          type="text"
+          value={size}
+          onChange={(event) => {
+            setSize(event.target.value);
+          }}
+          placeholder="Process size"
+        />
+        <button onClick={handleClick}>
+          <PlusIcon />
+        </button>
+
+      </div>
+    );
 };
 
 export default Input;
