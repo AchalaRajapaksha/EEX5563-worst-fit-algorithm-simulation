@@ -33,7 +33,8 @@ function Input({ processes, setProcesses, }) {
 
   
     return (
-      <div>
+      
+      <div className='input-wrapper'>
         <input
           type="text"
           value={process}
@@ -50,11 +51,14 @@ function Input({ processes, setProcesses, }) {
           }}
           placeholder="Process size"
         />
-        <button onClick={handleClick}>
+     
+     
+        <button className='add-button' onClick={handleClick}>
           <PlusIcon />
         </button>
 
       </div>
+   
     );
 };
 

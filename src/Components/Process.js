@@ -8,12 +8,12 @@ function Process({ process, index, processes, setProcesses }) {
   };
 
   return (
-    <div>
+    <div className='list-wrapper'>
       <div>{index}.</div>
       <div>
-        {process.name} size-{process.size}
+        {process.name} - size-{process.size} MB
       </div>
-      <button onClick={handleDelete}><TrashIcon/></button>
+      <button className="delete-button" onClick={handleDelete}><TrashIcon/></button>
     </div>
   );
 };

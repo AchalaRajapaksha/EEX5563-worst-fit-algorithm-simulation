@@ -15,12 +15,12 @@ export default function Block({ block, index, blocks, setBlocks }) {
   };
 
   return (
-    <div>
+    <div className='list-wrapper' >
       <div>{index}.</div>
       <div>
-        {block.block} 
-      </div>
-      <button onClick={handleDelete}>
+        {block.block} MB
+      </div> 
+      <button className="delete-button" onClick={handleDelete}>
         <TrashIcon />
       </button>
     </div>

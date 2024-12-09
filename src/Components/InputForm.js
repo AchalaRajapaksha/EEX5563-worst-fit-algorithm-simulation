@@ -90,12 +90,12 @@ function InputForm() {
 
   return (
     <div className="input-form-container">
-      <div className="input-section">
+    
         <h1>Worst Fit Algorithm Simulation</h1>
-
+        <div className="input-section">
         <Input processes={processes} setProcesses={setProcesses} />
         <InputBlocks blocks={blocks} setBlocks={setBlocks} />
-
+        </div>
         <div className="button-group">
           <button onClick={allocateWorstFit} className="run-button">
             Run Simulation
@@ -104,9 +104,10 @@ function InputForm() {
             Clear All
           </button>
         </div>
+<div className="total-list-wrapper">
 
-        <div>
-          <h3>Entered Processes</h3>
+<div className="process-list" >
+        <h3 >Entered Processes</h3>       
           {processes.map((process, index) => (
             <Process
               key={process.id}
@@ -114,12 +115,11 @@ function InputForm() {
               index={index + 1}
               processes={processes}
               setProcesses={setProcesses}
-            />
-          ))}
-        </div>
-
-        <div>
-          <h3>Entered Memory Blocks</h3>
+            /> 
+          ))}  </div>
+      
+        <div className="process-list">
+        <br/> <h3>Entered Memory Blocks</h3> 
           {blocks.map((block, index) => (
             <Block
               key={block.id}
@@ -129,11 +129,12 @@ function InputForm() {
               setBlocks={setBlocks}
             />
           ))}
+       
         </div>
       </div>
 
       <div className="results-section">
-        <h2>Simulation Results</h2>
+       <br/> <h2>Simulation Results</h2>
         <table>
           <thead>
             <tr>

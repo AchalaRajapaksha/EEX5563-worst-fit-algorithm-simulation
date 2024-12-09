@@ -27,7 +27,7 @@ export default function InputBlocks({ blocks, setBlocks }) {
     setBlock(""); // Clear inputs
   };
   return (
-    <div>
+    <div className='input-wrapper'>
       <input
         type="text"
         value={block}
@@ -37,7 +37,7 @@ export default function InputBlocks({ blocks, setBlocks }) {
         placeholder="Memory block size"
       />
 
-      <button onClick={handleClick2}>
+      <button className='add-button' onClick={handleClick2}>
         <PlusIcon />
       </button>
 
