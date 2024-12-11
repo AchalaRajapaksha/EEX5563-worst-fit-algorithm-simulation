@@ -16,6 +16,7 @@ function InputForm() {
     const updatedBlocks = blocks.map((block) => ({
       ...block,
       remainingSize: block.block, // Track remaining size
+      allocations: block.allocations || [], // Ensure allocations are initialized as an empty array if undefined
     }));
 
     const simulationResults = [];
@@ -32,7 +33,12 @@ function InputForm() {
           const usedMemory = process.size;
           const freeMemory = updatedBlocks[i].remainingSize - usedMemory;
 
-          // Add allocation to results
+          // Add allocation to results and track process in the block's allocations
+          updatedBlocks[i].allocations.push({
+            processName: process.name,
+            processSize: usedMemory,
+          });
+
           simulationResults.push({
             blockSize: updatedBlocks[i].block, // Original size
             processName: process.name,
@@ -77,8 +83,9 @@ function InputForm() {
       }
     });
 
-    // Update the results state
+    // Update the results state and blocks state
     setResults(simulationResults);
+    setBlocks(updatedBlocks);
   };
 
   // Function to clear all processes, blocks, and results
@@ -88,26 +95,117 @@ function InputForm() {
     setResults([]);
   };
 
+  // Render memory block visualization
+  const renderMemoryBlocks = () => {
+    return blocks.map((block, index) => {
+      let usedMemoryWidth = 0;
+      let freeMemoryWidth = 100;
+
+      // Calculate widths for visualization (percentage of block size)
+      const totalBlockSize = block.block;
+      let allocatedMemory = 0;
+
+      // Safely handle the allocations array, default to empty if undefined
+      const allocations = block.allocations || [];
+
+      allocations.forEach((allocation) => {
+        allocatedMemory += allocation.processSize;
+      });
+
+      usedMemoryWidth = (allocatedMemory / totalBlockSize) * 100;
+      freeMemoryWidth = 100 - usedMemoryWidth;
+
+      return (
+        <div key={index} style={{ marginBottom: "20px" }}>
+          <div style={{ fontWeight: "bold" }}>
+            Memory Block {index + 1} ({block.block} MB):
+          </div>
+          <div
+            style={{
+              display: "flex",
+              border: "1px solid black",
+              width: "100%",
+              height: "30px",
+            }}
+          >
+            {/* Render allocated memory segments */}
+            {allocations.map((allocation, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: "#37e62e",
+                  width: `${(allocation.processSize / block.block) * 100}%`, // Proportional width
+                  height: "100%",
+                  borderRight:
+                    idx < allocations.length - 1 ? "1px solid black" : "none", // Adding border between processes
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "10px",
+                    fontWeight: "bold",
+                    display: "flex", // Enable flexbox
+                    justifyContent: "center", // Horizontally center the content
+                    alignItems: "center", // Vertically center the content
+                    height: "100%", // Ensure the text fills the full height of the div
+                    width: "100%", // Ensure the text fills the full width of the div
+                  }}
+                >
+                  {" "}
+                  {allocation.processName} ({allocation.processSize} MB){" "}
+                </div>
+              </div>
+            ))}
+            {/* Render remaining free memory */}
+            <div
+              style={{
+                backgroundColor: "#f02939",
+                width: `${freeMemoryWidth}%`,
+                height: "100%",
+                borderLeft: "1px solid black",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "10px",
+                  fontWeight: "bold",
+                  display: "flex", // Enable flexbox
+                  justifyContent: "center", // Horizontally center the content
+                  alignItems: "center", // Vertically center the content
+                  height: "100%", // Ensure the text fills the full height of the div
+                  width: "100%", // Ensure the text fills the full width of the div
+                }}
+              >
+                {block.remainingSize} MB
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+
   return (
     <div className="input-form-container">
-    
-        <h1>Worst Fit Algorithm Simulation</h1>
-        <div className="input-section">
+      <h1>Worst Fit Algorithm Simulation</h1>
+
+      <div className="input-section">
         <Input processes={processes} setProcesses={setProcesses} />
         <InputBlocks blocks={blocks} setBlocks={setBlocks} />
-        </div>
-        <div className="button-group">
-          <button onClick={allocateWorstFit} className="run-button">
-            Run Simulation
-          </button>
-          <button onClick={clearAll} className="clear-button">
-            Clear All
-          </button>
-        </div>
-<div className="total-list-wrapper">
+      </div>
 
-<div className="process-list" >
-        <h3 >Entered Processes</h3>       
+      <div className="button-group">
+        <button onClick={allocateWorstFit} className="run-button">
+          Run Simulation
+        </button>
+        <button onClick={clearAll} className="clear-button">
+          Clear All
+        </button>
+      </div>
+
+      <div className="total-list-wrapper">
+        <div className="process-list">
+          <h3>Entered Processes</h3>
           {processes.map((process, index) => (
             <Process
               key={process.id}
@@ -115,11 +213,13 @@ function InputForm() {
               index={index + 1}
               processes={processes}
               setProcesses={setProcesses}
-            /> 
-          ))}  </div>
-      
+            />
+          ))}
+        </div>
+
         <div className="process-list">
-        <br/> <h3>Entered Memory Blocks</h3> 
+          <br />
+          <h3>Entered Memory Blocks</h3>
           {blocks.map((block, index) => (
             <Block
               key={block.id}
@@ -129,12 +229,12 @@ function InputForm() {
               setBlocks={setBlocks}
             />
           ))}
-       
         </div>
       </div>
 
       <div className="results-section">
-       <br/> <h2>Simulation Results</h2>
+        <br />
+        <h2>Simulation Results</h2>
         <table>
           <thead>
             <tr>
@@ -157,6 +257,12 @@ function InputForm() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Visualization Section for Memory Blocks */}
+      <div className="memory-visualization">
+        <h2>Memory Blocks Visualization</h2>
+        {renderMemoryBlocks()}
       </div>
     </div>
   );
