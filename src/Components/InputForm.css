@@ -8,7 +8,7 @@ body{
 .input-form-container{
   width: 100%;
   height: auto;
-  background-color: #47e7ff;
+  background-color: #5c8ba1;
   padding: 10px;
   border-radius: 5px;
 }
@@ -33,11 +33,11 @@ th, td {
 }
 
 td{
-  background-color:#ab9cff;
+  background-color:#7de8c6;
 }
 
 th {
-  background-color: #8773fa;
+  background-color: #6cd4b3;
 }
 
 button {
@@ -50,11 +50,13 @@ button {
 }
 
 .run-button{
+  font-weight: bold;
   background-color: #5bfce4;
 }
 
 .clear-button{
-  background-color: #f54784;
+  font-weight: bold;
+  background-color: #d63636;
 }
 
 .clear-button:hover {
@@ -62,7 +64,7 @@ button {
 }
 
 .run-button:hover {
-  background-color: #72f2df;
+  background-color: #8fe3d8;
 }
 
 .input-wrapper{
@@ -89,18 +91,19 @@ align-items: center;
 }
 
 .add-button{
+  font-weight: bold;
   width:40px;
   border-radius: 5px;
   background-color: aquamarine;
 }
 
 .add-button:hover{
-  background-color: #72f2df;
+  background-color: #8fe3d8;
 }
 
 .delete-button{
   width: 40px;
-  background-color: #f73975;
+  background-color: #db1616;
  }
 
 .delete-button:hover{
@@ -118,12 +121,22 @@ align-items: center;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  background-color: #dea5fa;
+  background-color: #91e6de;
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 10px;
   
 }
+
+.alocated{
+background-color: #e8473f;
+width: 50%;
+}
+
+.free{
+  background-color: #5ec259;
+  width: 30%;
+  }
 
 
 

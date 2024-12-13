@@ -49,7 +49,7 @@ function Input({ processes, setProcesses, }) {
           onChange={(event) => {
             setSize(event.target.value);
           }}
-          placeholder="Process size"
+          placeholder="Process size in MB"
         />
      
      

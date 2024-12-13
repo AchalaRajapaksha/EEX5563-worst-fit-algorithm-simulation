@@ -126,6 +126,7 @@ function InputForm() {
               border: "1px solid black",
               width: "100%",
               height: "30px",
+              
             }}
           >
             {/* Render allocated memory segments */}
@@ -133,7 +134,7 @@ function InputForm() {
               <div
                 key={idx}
                 style={{
-                  backgroundColor: "#37e62e",
+                  backgroundColor: "#e8473f",
                   width: `${(allocation.processSize / block.block) * 100}%`, // Proportional width
                   height: "100%",
                   borderRight:
@@ -142,7 +143,7 @@ function InputForm() {
               >
                 <div
                   style={{
-                    fontSize: "10px",
+                    fontSize: "10.5px",
                     fontWeight: "bold",
                     display: "flex", // Enable flexbox
                     justifyContent: "center", // Horizontally center the content
@@ -159,7 +160,7 @@ function InputForm() {
             {/* Render remaining free memory */}
             <div
               style={{
-                backgroundColor: "#f02939",
+                backgroundColor: "#5ec259",
                 width: `${freeMemoryWidth}%`,
                 height: "100%",
                 borderLeft: "1px solid black",
@@ -188,6 +189,7 @@ function InputForm() {
   return (
     <div className="input-form-container">
       <h1>Worst Fit Algorithm Simulation</h1>
+      <h3>Please enter the process details and memory blocks to run simulation</h3>
 
       <div className="input-section">
         <Input processes={processes} setProcesses={setProcesses} />
@@ -261,7 +263,9 @@ function InputForm() {
 
       {/* Visualization Section for Memory Blocks */}
       <div className="memory-visualization">
-        <h2>Memory Blocks Visualization</h2>
+       <br/> <h2>Memory Blocks Visualization</h2>
+        <h4 className="alocated">Memory alocated for Procecces</h4>
+        <h4 className="free">Free memory</h4>
         {renderMemoryBlocks()}
       </div>
     </div>

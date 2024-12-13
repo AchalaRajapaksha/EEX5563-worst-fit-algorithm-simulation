@@ -34,7 +34,7 @@ export default function InputBlocks({ blocks, setBlocks }) {
         onChange={(event) => {
           setBlock(event.target.value);
         }}
-        placeholder="Memory block size"
+        placeholder="Memory block size in MB"
       />
 
       <button className='add-button' onClick={handleClick2}>
