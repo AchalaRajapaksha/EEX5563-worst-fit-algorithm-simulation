@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/eex5563-worst-fit-algorithm-simulation/static/css/main.fdc03459.css",
+    "main.js": "/eex5563-worst-fit-algorithm-simulation/static/js/main.7b081c89.js",
+    "static/js/453.8436c544.chunk.js": "/eex5563-worst-fit-algorithm-simulation/static/js/453.8436c544.chunk.js",
+    "index.html": "/eex5563-worst-fit-algorithm-simulation/index.html",
+    "main.fdc03459.css.map": "/eex5563-worst-fit-algorithm-simulation/static/css/main.fdc03459.css.map",
+    "main.7b081c89.js.map": "/eex5563-worst-fit-algorithm-simulation/static/js/main.7b081c89.js.map",
+    "453.8436c544.chunk.js.map": "/eex5563-worst-fit-algorithm-simulation/static/js/453.8436c544.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fdc03459.css",
+    "static/js/main.7b081c89.js"
+  ]
+}
